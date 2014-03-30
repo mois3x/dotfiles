@@ -60,10 +60,10 @@ let mapleader = "-"
 let g:mapleader = "-"
 
 " VIM TSLIME RSPEC
-let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec -f d {spec}\n")'
+"let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec -f d {spec}\n")'
 " vim-rspec mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
+"map <Leader>t :call RunCurrentSpecFile()<CR>
+"map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
@@ -84,3 +84,6 @@ let g:turbux_command_rspec = 'rspec -f d' " default is empty
 :vnoremap <leader>rrlv :RRenameLocalVariable<cr>
 :vnoremap <leader>rriv :RRenameInstanceVariable<cr>
 :vnoremap <leader>rem  :RExtractMethod<cr>
+
+" ctrlp buffer-list
+:map <leader>b  :CtrlPBuffer<cr>
