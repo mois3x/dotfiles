@@ -70,6 +70,3 @@
 [submodule "vim/bundle/bclose"]
 	path = vim/bundle/bclose
 	url = git@github.com:rbgrouleff/bclose.vim.git
-[submodule "vim/bundle/tslime.vim"]
-	path = vim/bundle/tslime.vim
-	url = https://github.com/jgdavey/tslime.vim.git
