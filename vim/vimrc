@@ -6,7 +6,7 @@ filetype plugin indent on
 set shiftwidth=2
 set tabstop=2
 set expandtab
-set colorcolumn=100
+set colorcolumn=80
 set encoding=utf-8
 if has('gui_running')
     set background=light
@@ -56,14 +56,18 @@ map <S-Tab> :bprevious<cr>
 
 " With a map leader it's possible to do extra key combinations
 " " like <leader>w saves the current file
-let mapleader = "-"
-let g:mapleader = "-"
+let mapleader = " "
+let g:mapleader = " "
+
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
 
 " VIM TSLIME RSPEC
-"let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec -f d {spec}\n")'
+let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec -f d {spec}\n")'
 " vim-rspec mappings
-"map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>t :call RunCurrentSpecFile()<CR>
 "map <Leader>s :call RunNearestSpec()<CR>
+map <leader>s <Plug>SendFocusedTestToTmux
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
@@ -87,3 +91,12 @@ let g:turbux_command_rspec = 'rspec -f d' " default is empty
 
 " ctrlp buffer-list
 :map <leader>b  :CtrlPBuffer<cr>
+
+"ctrlp ignores
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files --cached --exclude-standard --others'],
+    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    \ },
+  \ 'fallback': 'find %s -type f'
+  \ }
