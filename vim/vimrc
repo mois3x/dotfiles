@@ -32,8 +32,8 @@ imap <C-e> <C-y>,
 set t_Co=16
 set number
 
-set guifont=Monaco:h12
 let g:NERDTreeWinPos = "right"
+set guifont=Monaco:h12
 set guioptions-=T " Removes top toolbar
 set guioptions-=r " Removes right hand scroll bar
 set go-=L " Removes left hand scroll bar
@@ -59,6 +59,11 @@ map <S-Tab> :bprevious<cr>
 let mapleader = " "
 let g:mapleader = " "
 
+"Set custom directory, and then snipmate dont load default snippets
+"let g:snippets_dir = "~/.vim/snippets"
+"let g:snipMate = {}
+"let g:snipMate.scope_aliases = {}
+"let g:snipMate.scope_aliases['ruby'] = 'ruby,rails'
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
@@ -100,3 +105,27 @@ let g:ctrlp_user_command = {
     \ },
   \ 'fallback': 'find %s -type f'
   \ }
+
+"vim dragvisuals
+vmap  <expr>  <LEFT>   DVB_Drag('left')
+vmap  <expr>  <RIGHT>  DVB_Drag('right')
+vmap  <expr>  <DOWN>   DVB_Drag('down')
+vmap  <expr>  <UP>     DVB_Drag('up')
+vmap  <expr>  D        DVB_Duplicate()
+
+"move lines
+nnoremap <c-s-j> :m .+1<CR>==
+nnoremap <c-s-k> :m .-2<CR>==
+inoremap <c-s-j> <Esc>:m .+1<CR>==gi
+inoremap <c-s-k> <Esc>:m .-2<CR>==gi
+vnoremap <c-s-j> :m '>+1<CR>gv=gv
+vnoremap <c-s-k> :m '<-2<CR>gv=gv
+
+fun! GetSnipsInCurrentScope()
+    let snips = {}
+    for scope in [bufnr('%')] + split(&ft, '\.') + ['_']
+        call extend(snips, get(s:snippets, scope, {}), 'keep')
+        call extend(snips, get(s:multi_snips, scope, {}), 'keep')
+    endfor
+    return snips
+endf
