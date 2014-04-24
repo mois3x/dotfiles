@@ -59,14 +59,6 @@ map <S-Tab> :bprevious<cr>
 let mapleader = " "
 let g:mapleader = " "
 
-"Set custom directory, and then snipmate dont load default snippets
-"let g:snippets_dir = "~/.vim/snippets"
-"let g:snipMate = {}
-"let g:snipMate.scope_aliases = {}
-"let g:snipMate.scope_aliases['ruby'] = 'ruby,rails'
-" Switch between the last two files
-nnoremap <leader><leader> <c-^>
-
 " VIM TSLIME RSPEC
 let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec -f d {spec}\n")'
 " vim-rspec mappings
@@ -120,12 +112,3 @@ inoremap <c-s-j> <Esc>:m .+1<CR>==gi
 inoremap <c-s-k> <Esc>:m .-2<CR>==gi
 vnoremap <c-s-j> :m '>+1<CR>gv=gv
 vnoremap <c-s-k> :m '<-2<CR>gv=gv
-
-fun! GetSnipsInCurrentScope()
-    let snips = {}
-    for scope in [bufnr('%')] + split(&ft, '\.') + ['_']
-        call extend(snips, get(s:snippets, scope, {}), 'keep')
-        call extend(snips, get(s:multi_snips, scope, {}), 'keep')
-    endfor
-    return snips
-endf
