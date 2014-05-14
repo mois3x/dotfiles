@@ -3,6 +3,7 @@ set nocompatible
 syntax on
 syntax enable
 filetype plugin indent on
+set laststatus=2
 set shiftwidth=2
 set tabstop=2
 set expandtab
@@ -13,11 +14,20 @@ if has('gui_running')
     else
     set background=dark
 endif
+
+set encoding=utf-8
+set term=xterm-256color
+set termencoding=utf-8
+
 let g:solarized_termtrans = 1
 colorscheme solarized
 ""let g:solarized_termcolors=16
 call togglebg#map("<F5>")
+let g:airline_theme='kalisi'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tmuxline#enabled = 0
+let g:tmuxline_theme = 'zenburn'
 "let g:airline#extensions#tabline#left_sep = ' '
 "let g:airline#extensions#tabline#left_alt_sep = '|'
 set smartindent
@@ -42,6 +52,18 @@ autocmd User Rails let b:surround_{char2nr('-')} = "<% \r %>" " displays <% %> c
 
 au VimEnter * IndentGuidesEnable
 
+" In Normal mode, Arrow keys switch windows
+nnoremap <up> <C-w><up>
+nnoremap <down> <C-w><down>
+nnoremap <left> <C-w><left>
+nnoremap <right> <C-w><right>
+" Disable arrow keys
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+
 ""Remap normal mode
 :imap jj <Esc>
 nnoremap <silent> <C-S> :<C-u>Update<CR>
@@ -49,6 +71,7 @@ inoremap <M-o> <Esc>o
 inoremap <C-j> <Down>
 let g:ragtag_global_maps = 1
 :set hlsearch
+
 
 " Switch to alternate file
 map <Tab> :bnext<cr>
@@ -67,6 +90,9 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <leader>s <Plug>SendFocusedTestToTmux
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
+
+" Update document
+:noremap <F2> :<c-u>update <cr>
 
 " turbux setting
 let g:turbux_command_prefix = ' bundle exec' " default is empty
@@ -112,3 +138,25 @@ inoremap <c-s-j> <Esc>:m .+1<CR>==gi
 inoremap <c-s-k> <Esc>:m .-2<CR>==gi
 vnoremap <c-s-j> :m '>+1<CR>gv=gv
 vnoremap <c-s-k> :m '<-2<CR>gv=gv
+
+
+""functions
+function SwitchBuffer()
+    b#
+endfunction
+  
+:nnoremap <leader><Tab> :call SwitchBuffer()<CR>)
+
+""Add closing braces at end of the line
+function! ConditionalPairMap(open, close)
+  let line = getline('.')
+  let col = col('.')
+  if col < col('$') || stridx(line, a:close, col + 1) != -1
+    return a:open
+  else
+    return a:open . a:close . repeat("\<left>", len(a:close))
+  endif
+endf
+inoremap <expr> ( ConditionalPairMap('(', ')')
+inoremap <expr> { ConditionalPairMap('{', '}')
+inoremap <expr> [ ConditionalPairMap('[', ']')
