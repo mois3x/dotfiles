@@ -14,7 +14,6 @@ if has('gui_running')
     else
     set background=dark
 endif
-
 set encoding=utf-8
 set term=xterm-256color
 set termencoding=utf-8
@@ -113,7 +112,10 @@ let g:turbux_command_rspec = 'rspec -f d' " default is empty
 :vnoremap <leader>rem  :RExtractMethod<cr>
 
 " ctrlp buffer-list
-:map <leader>b  :CtrlPBuffer<cr>
+:map <leader>m  :CtrlPBuffer<cr>
+
+"Remap :
+:map ; :
 
 "ctrlp ignores
 let g:ctrlp_user_command = {

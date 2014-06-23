@@ -92,3 +92,6 @@
 [submodule "vim/bundle/tmuxline.vim"]
 	path = vim/bundle/tmuxline.vim
 	url = https://github.com/edkolev/tmuxline.vim.git
+[submodule "vim/bundle/vim-i18n"]
+	path = vim/bundle/vim-i18n
+	url = https://github.com/stefanoverna/vim-i18n.git
