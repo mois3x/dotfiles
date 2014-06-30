@@ -19,10 +19,10 @@ set term=xterm-256color
 set termencoding=utf-8
 
 let g:solarized_termtrans = 1
-colorscheme solarized
+colorscheme pencil
 ""let g:solarized_termcolors=16
 call togglebg#map("<F5>")
-let g:airline_theme='kalisi'
+""let g:airline_theme='kalisi'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tmuxline#enabled = 0
@@ -141,6 +141,8 @@ inoremap <c-s-k> <Esc>:m .-2<CR>==gi
 vnoremap <c-s-j> :m '>+1<CR>gv=gv
 vnoremap <c-s-k> :m '<-2<CR>gv=gv
 
+"" Vim I18n plugin
+vmap <Leader>z :call I18nTranslateString()<CR>)
 
 ""functions
 function SwitchBuffer()
