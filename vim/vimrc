@@ -18,6 +18,12 @@ set encoding=utf-8
 set term=xterm-256color
 set termencoding=utf-8
 
+set pastetoggle=<F3>
+"leave paste mode when exit from inser mode
+augroup nopastemode
+    autocmd InsertLeave * :set nopaste
+augroup END
+
 let g:solarized_termtrans = 1
 colorscheme pencil
 ""let g:solarized_termcolors=16
@@ -50,6 +56,9 @@ autocmd User Rails let b:surround_{char2nr('-')} = "<% \r %>" " displays <% %> c
 "":set cpoptions+=$ " puts a $ marker for the end of words/lines in cw/c$ commands
 
 au VimEnter * IndentGuidesEnable
+
+" Use ack instead of grep
+set grepprg=ack
 
 " In Normal mode, Arrow keys switch windows
 nnoremap <up> <C-w><up>
