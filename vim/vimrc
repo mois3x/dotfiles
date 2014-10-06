@@ -8,6 +8,14 @@ set shiftwidth=2
 set tabstop=2
 set expandtab
 set colorcolumn=80
+"" set color for OverLength text and ColorColumn 
+augroup vimrc_autocmds
+au!
+    autocmd BufRead * highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
+    autocmd BufRead * match OverLength /\%81v.*/
+    autocmd BufRead * highlight ColorColumn ctermbg=lightblue
+augroup END
+
 set encoding=utf-8
 if has('gui_running')
     set background=light
@@ -42,6 +50,9 @@ set nobackup
 set noswapfile
 "" NERDTree toogle F12
 nnoremap <F12> :NERDTreeToggle<enter>
+
+""Tagbar
+nmap <F8> :TagbarToggle<CR>
 "" Remap emmet
 imap <C-e> <C-y>,
 set t_Co=16
@@ -123,6 +134,9 @@ let g:turbux_command_rspec = 'rspec -f d' " default is empty
 " ctrlp buffer-list
 :map <leader>m  :CtrlPBuffer<cr>
 
+" ctrlp brwoser tag
+nnoremap <leader>. :CtrlPTag<cr>
+
 "Remap :
 :map ; :
 
@@ -173,3 +187,9 @@ endf
 inoremap <expr> ( ConditionalPairMap('(', ')')
 inoremap <expr> { ConditionalPairMap('{', '}')
 inoremap <expr> [ ConditionalPairMap('[', ']')
+
+""Tablurize bindings
+nmap <Leader>xe :Tabularize /=<CR>
+vmap <Leader>xe :Tabularize /=<CR>
+nmap <Leader>xc :Tabularize /:\zs<CR>
+vmap <Leader>xc :Tabularize /:\zs<CR>
