@@ -37,12 +37,24 @@ colorscheme pencil
 ""let g:solarized_termcolors=16
 call togglebg#map("<F5>")
 ""let g:airline_theme='kalisi'
+""""""
+""tmuxline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tmuxline#enabled = 0
 let g:tmuxline_theme = 'zenburn'
 "let g:airline#extensions#tabline#left_sep = ' '
 "let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'c'    : ['#(whoami)', '#(osascript ~/status_spo.scpt)'],
+      \'win'  : ['#I', '#W'],
+      \'cwin' : ['#I', '#W', '#F'],
+      \'y'    : ['%R', '%a', '%Y'],
+      \'z'    : '#h'}
+
+
+
 set smartindent
 set autoindent
 ""no swap files
@@ -157,12 +169,12 @@ vmap  <expr>  <UP>     DVB_Drag('up')
 vmap  <expr>  D        DVB_Duplicate()
 
 "move lines
-nnoremap <c-s-j> :m .+1<CR>==
-nnoremap <c-s-k> :m .-2<CR>==
-inoremap <c-s-j> <Esc>:m .+1<CR>==gi
-inoremap <c-s-k> <Esc>:m .-2<CR>==gi
-vnoremap <c-s-j> :m '>+1<CR>gv=gv
-vnoremap <c-s-k> :m '<-2<CR>gv=gv
+"nnoremap <c-s-j> :m .+1<CR>==
+"nnoremap <c-s-k> :m .-2<CR>==
+"inoremap <c-s-j> <Esc>:m .+1<CR>==gi
+"inoremap <c-s-k> <Esc>:m .-2<CR>==gi
+"vnoremap <c-s-j> :m '>+1<CR>gv=gv
+"vnoremap <c-s-k> :m '<-2<CR>gv=gv
 
 "" Vim I18n plugin
 vmap <Leader>z :call I18nTranslateString()<CR>)
@@ -201,3 +213,6 @@ silent! if emoji#available()
   let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
   let g:gitgutter_sign_modified_removed = emoji#for('collision')
 endif
+
+"vim-after-object
+autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')

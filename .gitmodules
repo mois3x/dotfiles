@@ -104,3 +104,12 @@
 [submodule "vim/bundle/vim-emoji"]
 	path = vim/bundle/vim-emoji
 	url = https://github.com/junegunn/vim-emoji.git
+[submodule "vim/bundle/ag.vim"]
+	path = vim/bundle/ag.vim
+	url = https://github.com/rking/ag.vim.git
+[submodule "vim/bundle/vim-after-object"]
+	path = vim/bundle/vim-after-object
+	url = https://github.com/junegunn/vim-after-object.git
+[submodule "vim/bundle/vim-tmux-navigator"]
+	path = vim/bundle/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator.git
